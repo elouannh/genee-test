@@ -27,7 +27,9 @@ def create_app(config):
 
     url_prefix = "/api"
 
+    from data.case.controllers import case_blueprint
     from data.place.controllers import place_blueprint
+    app.register_blueprint(case_blueprint, url_prefix=url_prefix)
     app.register_blueprint(place_blueprint, url_prefix=url_prefix)
 
     @app.errorhandler(ValidationError)
