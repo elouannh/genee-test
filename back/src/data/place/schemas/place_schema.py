@@ -1,4 +1,4 @@
-"""Schema for serializing/deserializing a BorrowBookModel"""
+"""Schema for serializing/deserializing a PlaceModel"""
 
 from data.place.models.place_model import PlaceModel
 from utils.base_schema import BaseSchema

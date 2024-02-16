@@ -1,4 +1,4 @@
-""" Routes for the endpoint 'book'"""
+""" Routes for the endpoint 'place'"""
 
 from flask import Blueprint, request
 from marshmallow import ValidationError
