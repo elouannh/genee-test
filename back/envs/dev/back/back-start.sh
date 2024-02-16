@@ -26,4 +26,4 @@ echo "Postgres server ready to accept connections, starting flask server"
 
 export FLASK_APP=main.py
 
-python app/main.py
+python src/main.py
