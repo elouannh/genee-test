@@ -5,6 +5,7 @@ from marshmallow import ValidationError
 
 from data.place.models import PlaceModel
 from data.place.schemas import PlaceSchema
+from data.place.services import PlaceService
 from utils import db
 
 NAME = 'place'
@@ -25,10 +26,20 @@ def get_place(id: str):
 def post_place():
     """POST route code goes here"""
     payload = request.get_json()
+
+    if 'dep_name' in payload:
+        found = PlaceService.get_towns_by_dep(payload['dep_name'])
+        return found, 200
+
+    if 'town_name' in payload:
+        found = PlaceService.get_dep_by_town(payload['town_name'])
+        return found, 200
+
     try:
         entity: PlaceModel = PlaceModel().load(payload)
     except ValidationError as error:
         return f"The payload does't correspond to a valid PlaceModel: {error}", 400
+
     db.session.add(entity)
     db.session.commit()
     return PlaceModel().dump(entity), 200

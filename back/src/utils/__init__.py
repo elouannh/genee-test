@@ -43,7 +43,7 @@ def create_app(config):
     with app.app_context():
         db.create_all()
 
-    client = connect_client(config)
+    client = connect_client()
     scrap_csv(client)
 
     return app

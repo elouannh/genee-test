@@ -5,6 +5,7 @@ from marshmallow import ValidationError
 
 from data.case.models import CaseModel
 from data.case.schemas import CaseSchema
+from data.case.services import CaseService
 from utils import db
 
 NAME = 'case'
@@ -25,13 +26,13 @@ def get_case(id: str):
 def post_case():
     """POST route code goes here"""
     payload = request.get_json()
-    try:
-        entity: CaseSchema = CaseSchema().load(payload)
-    except ValidationError as error:
-        return f"The payload does't correspond to a valid CaseModel: {error}", 400
-    db.session.add(entity)
-    db.session.commit()
-    return CaseModel().dump(entity), 200
+
+    passing = CaseService.is_valid(payload)
+    if len(passing) > 0:
+        joined = '\n'.join(map(lambda x: f'- {x}', passing))
+        return f"The playload doesn't correspond to a valid form submit.\n{joined}", 400
+
+    return payload, 200
 
 
 @case_blueprint.delete(f"/{NAME}/<int:id>")

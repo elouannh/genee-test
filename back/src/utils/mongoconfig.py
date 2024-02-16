@@ -1,12 +1,12 @@
 from pymongo import MongoClient
 import re
+import os
 
-def connect_client(config):
+def connect_client():
     """
     The function that starts the mongoDb database system
     """
-    print(config.MONGO_USER, config.MONGO_PASS)
-    client = MongoClient(host="mongodb://mongo:27017", username=config.MONGO_USER, password=config.MONGO_PASS)
+    client = MongoClient(host="mongodb://mongo:27017", username=os.getenv('MONGO_USER'), password=os.getenv('MONGO_PASS'))
 
     return client
 
@@ -18,6 +18,9 @@ def split_on_semicolon(s):
 def scrap_csv(client):
     db = client['refer']
     col = db['values']
+
+    if col.estimated_document_count() > 1:
+        return
 
     with open("./src/res/referentiel.csv", "r") as csv:
 
