@@ -1,7 +1,7 @@
 [project]
-name = 'pg1-lib-solution'
+name = 'gt-back'
 version = '1.0.0'
-description = 'Backend for a fictional library.'
+description = 'Backend for the Genee test.'
 requires-python = '>=3.11'
 dependencies = [
     'alembic',
@@ -17,7 +17,6 @@ dependencies = [
     'uWSGI',
     'load_dotenv',
     'pytest',
-    'Flask-JWT-Extended',
 ]
 
 [pyproject.optional-dependencies]
