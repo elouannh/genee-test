@@ -1,0 +1,15 @@
+FROM node:21-alpine
+
+EXPOSE 8585
+
+COPY ./ /app/
+
+WORKDIR '/app'
+
+# RUN npm install --no-update-notifier -g serve react-scripts
+RUN npm install .
+# RUN npm audit fix
+
+# ENTRYPOINT ["npm", "run", "dev"]
+
+ENTRYPOINT ["sh", "entrypoint_dev.sh"]

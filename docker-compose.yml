@@ -1,0 +1,59 @@
+version: "3"
+
+networks:
+  network:
+    driver: bridge
+
+services:
+
+  flask:
+    build:
+      context: ./back/.
+      dockerfile: Dockerfile
+    networks:
+      - network
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    links:
+      - postgres
+    environment:
+      - FLASK_APP=main.py
+    ports:
+      - "5678:5678"
+      - "5001:5001"
+    container_name: gt_back
+
+  frontend:
+    depends_on: 
+      - flask
+    container_name: frontend
+    init: true
+    restart: unless-stopped
+    build:
+      context: ./front/.
+      dockerfile: Dockerfile
+    ports:
+      - 8585:8585
+    environment:
+      PORT: ${FRONT_PORT}
+      REACT_APP_SERVER_PORT: ${BACK_PORT}
+      REACT_APP_CLIENT_PORT: ${FRONT_PORT}
+    volumes:
+      - ./front/.:/app/
+  
+  postgres:
+    container_name: postgres
+    restart: unless-stopped
+    build:
+      context: ./postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      FLASK_ENV: "development"
+      FLASK_DEBUG: "1"
+    networks:
+      - network

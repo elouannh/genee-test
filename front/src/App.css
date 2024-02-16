@@ -1,0 +1,15 @@
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.global_container {
+  display: flex;
+}
+
+.global_container > div {
+  box-shadow: 0 0 0 0.200rem rgba(0, 0, 0, 1);
+}
