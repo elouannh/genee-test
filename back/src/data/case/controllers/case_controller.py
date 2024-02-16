@@ -17,7 +17,7 @@ def get_case(id: str):
     """GET route code goes here"""
     entity: CaseModel = db.session.query(CaseModel).get(id)
     if entity is None:
-        return "case root is working.", 404
+        return "Case not found.", 404
     return entity.message, 200
 
 
@@ -26,7 +26,7 @@ def post_case():
     """POST route code goes here"""
     payload = request.get_json()
     try:
-        entity: CaseModel = CaseModel().load(payload)
+        entity: CaseSchema = CaseSchema().load(payload)
     except ValidationError as error:
         return f"The payload does't correspond to a valid CaseModel: {error}", 400
     db.session.add(entity)
