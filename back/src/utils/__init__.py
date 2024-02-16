@@ -6,7 +6,6 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import ValidationError
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 db: SQLAlchemy = SQLAlchemy()
 migrate = Migrate()
