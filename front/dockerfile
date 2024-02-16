@@ -1,6 +1,6 @@
 FROM node:21-alpine
 
-EXPOSE 8585
+EXPOSE 5173
 
 COPY ./ /app/
 

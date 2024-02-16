@@ -35,7 +35,7 @@ services:
       context: ./front/.
       dockerfile: Dockerfile
     ports:
-      - 8585:8585
+      - 5173:5173
     environment:
       PORT: ${FRONT_PORT}
       REACT_APP_SERVER_PORT: ${BACK_PORT}
