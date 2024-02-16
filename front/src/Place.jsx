@@ -19,9 +19,10 @@ export default function Place({ place, index, setPlaces, multi }) {
         })
     }, [departement, commune, desc])
 
-    useEffect(() => {
-        fetch("localhost:5001/api/place", {method: "POST", body: JSON.stringify({dep_name: departement})})
-    }, [departement])
+    // useEffect(async () => {
+    //    const response = await fetch("localhost:5001/api/place", {method: "POST", body: JSON.stringify({dep_name: departement})})
+    //     console.log(response)
+    // }, [departement])
 
     return (
         <div className='place_container'>
