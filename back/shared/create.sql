@@ -1,0 +1,4 @@
+DROP
+DATABASE IF EXISTS db_dev;
+CREATE
+DATABASE db_dev;
