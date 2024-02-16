@@ -46,3 +46,12 @@ Le formulaire doit être intuitif et ergonomique, avec des transitions fluides e
 Nous attendons un code source clair et documenté, reflétant votre capacité à aborder des problèmes complexes et à travailler de manière collaborative. Montrez-nous votre processus de pensée et votre méthodologie de travail à travers votre code.
 
 Votre approche pour relever ce défi nous intéresse autant que le résultat final. Bonne chance !
+
+# Pour lancer :
+
+###
+
+Exécutez 
+```bash
+docker compose up --build
+```
