@@ -1,0 +1,1 @@
+from .place_controller import place_blueprint

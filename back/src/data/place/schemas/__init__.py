@@ -1,0 +1,1 @@
+from .place_schema import PlaceSchema
