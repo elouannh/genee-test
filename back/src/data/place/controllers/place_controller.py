@@ -15,10 +15,11 @@ place_blueprint = Blueprint(f"{NAME}_place_blueprint", __name__)
 @place_blueprint.get(f"/{NAME}/<int:id>")
 def get_place(id: str):
     """GET route code goes here"""
-    entity: PlaceModel = db.session.query(AuthModel).get(id)
-    if entity is None:
-        return "Goodbye, World.", 404
     return entity.message, 200
+    # entity: PlaceModel = db.session.query(PlaceModel).get(id)
+    # if entity is None:
+    #     return "Goodbye, World.", 404
+    # return entity.message, 200
 
 
 @place_blueprint.post(f"/{NAME}/")
@@ -26,12 +27,12 @@ def post_place():
     """POST route code goes here"""
     payload = request.get_json()
     try:
-        entity: AuthModel = AuthModel().load(payload)
+        entity: PlaceModel = PlaceModel().load(payload)
     except ValidationError as error:
-        return f"The payload does't correspond to a valid AuthModel: {error}", 400
+        return f"The payload does't correspond to a valid PlaceModel: {error}", 400
     db.session.add(entity)
     db.session.commit()
-    return AuthModel().dump(entity), 200
+    return PlaceModel().dump(entity), 200
 
 
 @place_blueprint.delete(f"/{NAME}/<int:id>")
