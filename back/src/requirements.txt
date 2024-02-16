@@ -16,6 +16,8 @@ charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via flask
+dnspython==2.5.0
+    # via pymongo
 flask==3.0.2
     # via
     #   flask-cors
@@ -62,6 +64,8 @@ packaging==23.2
 pluggy==1.4.0
     # via pytest
 psycopg2==2.9.9
+    # via gt-back (pyproject.toml)
+pymongo==4.6.1
     # via gt-back (pyproject.toml)
 pytest==8.0.0
     # via gt-back (pyproject.toml)

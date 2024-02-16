@@ -24,6 +24,8 @@ services:
       - "5678:5678"
       - "5001:5001"
     container_name: gt_back
+    volumes:
+      - ./back/.:/code/
 
   frontend:
     depends_on: 
@@ -35,7 +37,7 @@ services:
       context: ./front/.
       dockerfile: Dockerfile
     ports:
-      - 8585:8585
+      - 5173:5173
     environment:
       PORT: ${FRONT_PORT}
       REACT_APP_SERVER_PORT: ${BACK_PORT}
@@ -55,5 +57,29 @@ services:
       POSTGRES_PASSWORD: ${DB_PASS}
       FLASK_ENV: "development"
       FLASK_DEBUG: "1"
+    networks:
+      - network
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    logging:
+      driver: none
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+    networks:
+      - network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASS}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PASS}@mongo:27017/
     networks:
       - network

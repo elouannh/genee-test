@@ -17,6 +17,7 @@ dependencies = [
     'uWSGI',
     'load_dotenv',
     'pytest',
+    "pymongo"
 ]
 
 [pyproject.optional-dependencies]

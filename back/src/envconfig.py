@@ -17,6 +17,9 @@ class BaseConfig:
         self.SQLALCHEMY_DATABASE_URI: Final[str] = \
             f"postgresql://{self.USER}:{self.DB_PASS}@{self.DB_IP}:5432/{self.DB_NAME}"
 
+        self.MONGO_USER: Final[str] = os.getenv("MONGO_USER")
+        self.MONGO_PASS: Final[str] = os.getenv("MONGO_PASS")
+
 
 class Development(BaseConfig):
     def __init__(self):

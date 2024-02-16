@@ -7,6 +7,8 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import ValidationError
 
+from utils.mongoconfig import connect_client, scrap_csv
+
 db: SQLAlchemy = SQLAlchemy()
 migrate = Migrate()
 
@@ -40,5 +42,8 @@ def create_app(config):
 
     with app.app_context():
         db.create_all()
+
+    client = connect_client(config)
+    scrap_csv(client)
 
     return app
