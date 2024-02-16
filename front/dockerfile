@@ -10,6 +10,6 @@ WORKDIR '/app'
 RUN npm install .
 # RUN npm audit fix
 
-# ENTRYPOINT ["npm", "run", "dev"]
+ENTRYPOINT ["npm", "run", "dev"]
 
-ENTRYPOINT ["sh", "entrypoint_dev.sh"]
+# ENTRYPOINT ["sh", "entrypoint_dev.sh"]

@@ -1,4 +1,3 @@
 
-npm install .
+npm install . && npm run dev
 # vite build --watch
-npm run dev

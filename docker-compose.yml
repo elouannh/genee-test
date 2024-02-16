@@ -42,8 +42,6 @@ services:
       PORT: ${FRONT_PORT}
       REACT_APP_SERVER_PORT: ${BACK_PORT}
       REACT_APP_CLIENT_PORT: ${FRONT_PORT}
-    volumes:
-      - ./front/.:/app/
   
   postgres:
     container_name: postgres
