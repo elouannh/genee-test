@@ -15,7 +15,7 @@ class BaseConfig:
         self.DB_NAME: Final[str] = os.getenv("DB_NAME")
         self.DB_IP: Final[str] = os.getenv("DB_IP")
         self.SQLALCHEMY_DATABASE_URI: Final[str] = \
-            f"postgresql://{self.USER}:{self.DB_PASS}@{self.DB_IP}:5200/{self.DB_NAME}"
+            f"postgresql://{self.USER}:{self.DB_PASS}@{self.DB_IP}:5432/{self.DB_NAME}"
 
 
 class Development(BaseConfig):
