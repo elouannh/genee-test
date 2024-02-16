@@ -17,7 +17,7 @@ class PlaceService:
         return docs
 
     @staticmethod
-    def get_dep_by_town(town_name: str) -> list[str]:
+    def get_dep_by_town(town_name: str) -> str:
         client = connect_client();
 
         db = client['refer']
