@@ -15,11 +15,10 @@ place_blueprint = Blueprint(f"{NAME}_place_blueprint", __name__)
 @place_blueprint.get(f"/{NAME}/<int:id>")
 def get_place(id: str):
     """GET route code goes here"""
+    entity: PlaceModel = db.session.query(PlaceModel).get(id)
+    if entity is None:
+        return "Goodbye World.", 404
     return entity.message, 200
-    # entity: PlaceModel = db.session.query(PlaceModel).get(id)
-    # if entity is None:
-    #     return "Goodbye, World.", 404
-    # return entity.message, 200
 
 
 @place_blueprint.post(f"/{NAME}/")
